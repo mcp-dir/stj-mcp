@@ -1,0 +1,39 @@
+# Smithery configuration for Jurisprudência STJ
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_stj
+
+name: stj-mcp
+displayName: "Jurisprudência STJ"
+description: >
+  Pesquise jurisprudência do **STJ**, a corte que uniformiza a interpretação da lei federal e que costuma decidir a sorte de uma tese em cível, consumidor e tributário. Acórdãos e súmulas com relator, órgão julgador, data, o trecho que casou a busca e o link oficial. A mesma conexão alcança outros 16 tribunais, para confrontar o entendimento superior com o que a instância local aplica. Grátis, sem login, hospedado pela plataforma.
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/mcp-dir/stj-mcp
+repository: https://github.com/mcp-dir/stj-mcp
+
+tags:
+  - stj
+  - superior-tribunal-de-justica
+  - jurisprudencia
+  - sumulas
+  - case-law
+  - brazil
+  - lei-federal
+  - read-only
+  - no-auth
+  - free
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_stj
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_stj/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.
